@@ -1,0 +1,47 @@
+﻿@model IEnumerable<Livros.Models.LivroModel>
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    }
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Lista dos Livros</title>
+</head>
+<body>
+    <p>
+        @Html.ActionLink("Incluir Livro", "NovoLivro")
+    </p>
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Autor)
+            </th>
+            <th></th>
+        </tr>
+    
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nome)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Autor)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "AtualizaLivro", new { id=item.ID }) |
+                @*@Html.ActionLink("Detalhes", "Details", new { id=item.ID }) |*@
+                @Html.ActionLink("Apagar", "ApagaLivro", new { id=item.ID })
+            </td>
+        </tr>
+    }
+    
+    </table>
+</body>
+</html>
